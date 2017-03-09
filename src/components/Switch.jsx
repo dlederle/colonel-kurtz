@@ -63,10 +63,10 @@ module.exports = React.createClass({
 
   hasHitMaxDepth() {
     let { app, parent } = this.props
-    let depth
+
     if (!app.state.maxDepth) return false
 
-    depth = Blocks.getDepth(app.state.blocks, parent)
+    let depth = Blocks.getDepth(app.state.blocks, parent)
 
     return depth >= app.state.maxDepth
   },

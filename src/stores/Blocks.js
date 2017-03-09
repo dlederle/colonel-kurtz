@@ -37,7 +37,6 @@ let Blocks = {
   },
 
   getDepth(state, block) {
-
     let currentBlock = block;
     let depth = 0
 

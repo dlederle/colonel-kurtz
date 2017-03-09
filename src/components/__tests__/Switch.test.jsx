@@ -176,25 +176,29 @@ describe('Components - Switch', function() {
     })
 
     it ('does not display the switch if the nesting is too deep', function() {
-      let el = render(<Switch app={ app } parent={ middle } position={ bottom } />)
+      let child = app.state.blocks[3]
+      let parent = app.state.blocks[2]
+
+      let el = render(<Switch app={ app } parent={ parent } position={ child } />)
       DOM.findDOMNode(el).className.should.not.include('col-switch-disabled')
     })
   })
 
-  describe.only('With nested blocks too deep', function() {
-    let bottom, middle, root
+  describe('With nested blocks too deep', function() {
+    let one, two, three, root
 
     beforeEach(function (done) {
       let NestedFixture = {...Fixture, types: [ Fixture.id ]}
 
-      bottom = { type: NestedFixture.id, content: {}, blocks: [] }
-      middle = { type: NestedFixture.id, content: {}, blocks: [bottom] }
-      root = { type: NestedFixture.id, content: {}, blocks: [middle] }
+      three = { type: NestedFixture.id, content: {}, blocks: [] }
+      two = { type: NestedFixture.id, content: {}, blocks: [three] }
+      one = { type: NestedFixture.id, content: {}, blocks: [two] }
+      root = { type: NestedFixture.id, content: {}, blocks: [one] }
 
       app = new Colonel({
         el : document.createElement('div'),
-        maxDepth : 2,
-        blocks : [ root ],
+        maxDepth : 3,
+        blocks : [root],
         blockTypes : [ NestedFixture ]
       })
 
@@ -202,7 +206,10 @@ describe('Components - Switch', function() {
     })
 
     it ('does not display the switch if the nesting is too deep', function() {
-      let el = render(<Switch app={ app } parent={ middle } position={ bottom } />)
+      let block = app.state.blocks[3]
+
+      let el = render(<Switch app={ app } parent={ block } position={ block } />)
+
       DOM.findDOMNode(el).className.should.include('col-switch-disabled')
     })
   })
