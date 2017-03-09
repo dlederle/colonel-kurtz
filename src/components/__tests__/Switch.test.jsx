@@ -161,13 +161,13 @@ describe('Components - Switch', function() {
     beforeEach(function(done) {
       let NestedFixture = {...Fixture, types: [ Fixture.id ]}
 
-      let bottom = { type: NestedFixture.id, content: {}, blocks: [] }
-      let middle = { type: NestedFixture.id, content: {}, blocks: [bottom] }
-      let root = { type: NestedFixture.id, content: {}, blocks: [middle] }
+      bottom = { type: NestedFixture.id, content: {}, blocks: [] }
+      middle = { type: NestedFixture.id, content: {}, blocks: [bottom] }
+      root = { type: NestedFixture.id, content: {}, blocks: [middle] }
 
       app = new Colonel({
         el : document.createElement('div'),
-        maxDepth : 4,
+        maxDepth : 3,
         blocks : [ root ],
         blockTypes : [ NestedFixture ]
       })
@@ -176,8 +176,8 @@ describe('Components - Switch', function() {
     })
 
     it ('does not display the switch if the nesting is too deep', function() {
-      let child = app.state.blocks[3]
-      let parent = app.state.blocks[2]
+      let child = app.state.blocks[2]
+      let parent = app.state.blocks[1]
 
       let el = render(<Switch app={ app } parent={ parent } position={ child } />)
       DOM.findDOMNode(el).className.should.not.include('col-switch-disabled')
@@ -185,15 +185,14 @@ describe('Components - Switch', function() {
   })
 
   describe('With nested blocks too deep', function() {
-    let one, two, three, root
+    let bottom, middle, root
 
     beforeEach(function (done) {
       let NestedFixture = {...Fixture, types: [ Fixture.id ]}
 
-      three = { type: NestedFixture.id, content: {}, blocks: [] }
-      two = { type: NestedFixture.id, content: {}, blocks: [three] }
-      one = { type: NestedFixture.id, content: {}, blocks: [two] }
-      root = { type: NestedFixture.id, content: {}, blocks: [one] }
+      bottom = { type: NestedFixture.id, content: {}, blocks: [] }
+      middle = { type: NestedFixture.id, content: {}, blocks: [bottom] }
+      root = { type: NestedFixture.id, content: {}, blocks: [middle] }
 
       app = new Colonel({
         el : document.createElement('div'),
@@ -206,7 +205,7 @@ describe('Components - Switch', function() {
     })
 
     it ('does not display the switch if the nesting is too deep', function() {
-      let block = app.state.blocks[3]
+      let block = app.state.blocks[2]
 
       let el = render(<Switch app={ app } parent={ block } position={ block } />)
 
