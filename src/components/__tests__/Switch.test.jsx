@@ -155,6 +155,58 @@ describe('Components - Switch', function() {
     })
   })
 
+  describe('With nested blocks', function() {
+    let bottom, middle, root
+
+    beforeEach(function(done) {
+      let NestedFixture = {...Fixture, types: [ Fixture.id ]}
+
+      let bottom = { type: NestedFixture.id, content: {}, blocks: [] }
+      let middle = { type: NestedFixture.id, content: {}, blocks: [bottom] }
+      let root = { type: NestedFixture.id, content: {}, blocks: [middle] }
+
+      app = new Colonel({
+        el : document.createElement('div'),
+        maxDepth : 4,
+        blocks : [ root ],
+        blockTypes : [ NestedFixture ]
+      })
+
+      app.start(done)
+    })
+
+    it ('does not display the switch if the nesting is too deep', function() {
+      let el = render(<Switch app={ app } parent={ middle } position={ bottom } />)
+      DOM.findDOMNode(el).className.should.not.include('col-switch-disabled')
+    })
+  })
+
+  describe.only('With nested blocks too deep', function() {
+    let bottom, middle, root
+
+    beforeEach(function (done) {
+      let NestedFixture = {...Fixture, types: [ Fixture.id ]}
+
+      bottom = { type: NestedFixture.id, content: {}, blocks: [] }
+      middle = { type: NestedFixture.id, content: {}, blocks: [bottom] }
+      root = { type: NestedFixture.id, content: {}, blocks: [middle] }
+
+      app = new Colonel({
+        el : document.createElement('div'),
+        maxDepth : 2,
+        blocks : [ root ],
+        blockTypes : [ NestedFixture ]
+      })
+
+      app.start(done)
+    })
+
+    it ('does not display the switch if the nesting is too deep', function() {
+      let el = render(<Switch app={ app } parent={ middle } position={ bottom } />)
+      DOM.findDOMNode(el).className.should.include('col-switch-disabled')
+    })
+  })
+
   describe('Creating editor children', function() {
     beforeEach(function(done) {
       let block   = { type: Fixture.id, content: {}, blocks: [] }
