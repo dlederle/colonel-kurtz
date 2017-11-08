@@ -1,4 +1,5 @@
 let React             = require('react')
+let PropTypes         = require('prop-types')
 let Actions           = require('../actions/blocks')
 let Animator          = require('./Animator')
 let BlockMenu         = require('./BlockMenu')
@@ -9,8 +10,8 @@ let respondsTo        = require('../utils/respondsTo')
 class Block extends React.Component {
 
   static propTypes = {
-    app   : React.PropTypes.object.isRequired,
-    block : React.PropTypes.object.isRequired
+    app   : PropTypes.object.isRequired,
+    block : PropTypes.object.isRequired
   }
 
   state = {
@@ -36,11 +37,11 @@ class Block extends React.Component {
     }
   }
 
-  openMenu() {
+  openMenu = () => {
     this.setState({ menuOpen: true })
   }
 
-  closeMenu() {
+  closeMenu = () => {
     this.setState({ menuOpen: false })
   }
 

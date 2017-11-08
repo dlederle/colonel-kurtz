@@ -10,7 +10,13 @@ let defaults = {
 }
 
 function generateComponent (component) {
-  class Component extends React.Component {}
+  function Component (props, context) {
+    React.Component.apply(this, props, context)
+  }
+
+  Component.prototype = Object.create(React.Component.prototype)
+
+  Component.prototype.render = () => null
 
   Object.assign(Component.prototype, component)
 

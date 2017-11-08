@@ -35,14 +35,14 @@ class BlockTypeGroup extends React.Component {
   getMenu() {
     return this.state.open ? (
       <FocusTrap key="menu" className="col-menu" element="nav" active onExit={ this.close } role="navigation">
-        { this.props.items.map(this.getButton) }
+        { this.props.items.map(this.getButton, this) }
       </FocusTrap>
     ) : null
   }
 
   render() {
     return (
-      <Animator aria-role="button" transitionName="col-menu" className="col-switch-dropdown" transitionEnterTimeout={ 300 } transitionLeaveTimeout={ 200 } onKeyUp={ this._onKeyUp }>
+      <Animator role="button" transitionName="col-menu" className="col-switch-dropdown" transitionEnterTimeout={ 300 } transitionLeaveTimeout={ 200 } onKeyUp={ this._onKeyUp }>
         <Btn key="label" className="col-switch-btn col-menu-label" onClick={ this.open }>{ this.props.label }</Btn>
         { this.getMenu() }
       </Animator>
@@ -57,3 +57,5 @@ class BlockTypeGroup extends React.Component {
   }
 
 }
+
+module.exports = BlockTypeGroup

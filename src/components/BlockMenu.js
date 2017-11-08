@@ -1,8 +1,9 @@
+let React     = require('react')
+let PropTypes = require('prop-types')
 let Animator  = require('./Animator')
 let FocusTrap = require('react-focus-trap')
 let Handle    = require('./MenuHandle')
 let Item      = require('./MenuItem')
-let React     = require('react')
 let menuItems = require('../config/menu')
 
 class BlockMenu extends React.Component {
@@ -10,8 +11,8 @@ class BlockMenu extends React.Component {
   static Item = Item
 
   static propTypes = {
-    app    : React.PropTypes.object.isRequired,
-    block  : React.PropTypes.object.isRequired
+    app    : PropTypes.object.isRequired,
+    block  : PropTypes.object.isRequired
   }
 
   static defaultProps = {

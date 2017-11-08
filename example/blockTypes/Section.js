@@ -3,21 +3,17 @@ let Button  = require('../../src/components/Button')
 let React   = require('react')
 let Section = require('../../addons/section')
 
-module.exports = React.createClass({
+class ExampleSection extends React.Component {
 
-  getDefaultProps() {
-    return {
-      content: {
-        color: "#bbbbbb"
-      }
+  static defaultProps = {
+    content: {
+      color: "#bbbbbb"
     }
-  },
+  }
 
-  getInitialState() {
-    return {
-      openSettings: false
-    }
-  },
+  state = {
+    openSettings: false
+  }
 
   getMenuItems() {
     return [{
@@ -25,7 +21,7 @@ module.exports = React.createClass({
       label   : 'Settings',
       onClick : this._onSettingsOpen
     }]
-  },
+  }
 
   render() {
     let { color, openSettings } = this.state
@@ -50,18 +46,18 @@ module.exports = React.createClass({
         </Dialog>
       </div>
     )
-  },
+  }
 
-  _onColorChange(e) {
+  _onColorChange = (e) => {
     this.props.onChange({ color: e.target.value })
-  },
+  }
 
-  _onSettingsOpen() {
+  _onSettingsOpen = () => {
     this.setState({ openSettings: true })
-  },
+  }
 
-  _onSettingsExit() {
+  _onSettingsExit = () => {
     this.setState({ openSettings: false })
   }
 
-})
+}

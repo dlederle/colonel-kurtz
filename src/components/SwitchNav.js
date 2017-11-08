@@ -1,14 +1,15 @@
+let React          = require('react')
+let PropTypes      = require('prop-types')
 let BlockTypeGroup = require('./BlockTypeGroup')
 let Btn            = require('./Button')
-let React          = require('react')
 let DOM            = require('react-dom')
 let groupBy        = require('group-by')
 
 class SwitchNav extends React.Component {
 
   static propTypes = {
-    blockTypes : React.PropTypes.array.isRequired,
-    onAdd      : React.PropTypes.func.isRequired
+    blockTypes : PropTypes.array.isRequired,
+    onAdd      : PropTypes.func.isRequired
   }
 
   componentDidMount() {

@@ -1,7 +1,8 @@
+let React         = require('react')
+let PropTypes     = require('prop-types')
 let ActionButton  = require('./ActionButton')
 let Actions       = require('../actions/blocks')
 let Blocks        = require('../stores/Blocks')
-let React         = require('react')
 let SwitchNav     = require('./SwitchNav')
 let classNames    = require('classnames')
 let typesForBlock = require('../utils/typesForBlock')
@@ -9,7 +10,7 @@ let typesForBlock = require('../utils/typesForBlock')
 class Switch extends React.Component {
 
   static propTypes = {
-    app : React.PropTypes.object.isRequired
+    app : PropTypes.object.isRequired
   }
 
   state = {
@@ -89,12 +90,12 @@ class Switch extends React.Component {
     ) : null
   }
 
-  _onAdd(type) {
+  _onAdd = (type) => {
     let { app, position, parent } = this.props
     app.push(Actions.create, [type.id, position, parent])
   }
 
-  _onToggle() {
+  _onToggle = () => {
     let { app, position, parent } = this.props
 
     let types = typesForBlock(app.state.blockTypes, parent)

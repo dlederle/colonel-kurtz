@@ -3,16 +3,17 @@
  * toggling between viewing modes and viewing managed content
  */
 
+let React       = require('react')
+let PropTypes   = require('prop-types')
 let Animator    = require('./Animator')
 let Blocks      = require('../stores/Blocks')
 let EditorBlock = require('./EditorBlock')
-let React       = require('react')
 let Switch      = require('./Switch')
 
 class App extends React.Component {
 
   static propTypes = {
-    app : React.PropTypes.object.isRequired
+    app : PropTypes.object.isRequired
   }
 
   getBlock(block, i) {

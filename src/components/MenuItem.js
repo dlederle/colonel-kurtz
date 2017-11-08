@@ -1,13 +1,14 @@
-let Button = require('./Button')
-let React  = require('react')
+let React     = require('react')
+let PropTypes = require('prop-types')
+let Button    = require('./Button')
 
 class MenuItem extends React.Component {
 
   static propTypes = {
-    app   : React.PropTypes.object.isRequired,
-    block : React.PropTypes.object.isRequired,
-    label : React.PropTypes.string.isRequired,
-    id    : React.PropTypes.string.isRequired
+    app   : PropTypes.object.isRequired,
+    block : PropTypes.object.isRequired,
+    label : PropTypes.string.isRequired,
+    id    : PropTypes.string.isRequired
   }
 
   static defaultProps = {

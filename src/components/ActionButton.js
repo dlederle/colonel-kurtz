@@ -1,12 +1,13 @@
-let Btn   = require('./Button')
-let React = require('react')
-let DOM   = require('react-dom')
+let React     = require('react')
+let DOM       = require('react-dom')
+let PropTypes = require('prop-types')
+let Btn       = require('./Button')
 
 class ActionButton extends React.Component {
 
   static propTypes = {
-    label   : React.PropTypes.string.isRequired,
-    onClick : React.PropTypes.func.isRequired
+    label   : PropTypes.string.isRequired,
+    onClick : PropTypes.func.isRequired
   }
 
   static defaultProps = {

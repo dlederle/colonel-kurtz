@@ -1,12 +1,13 @@
-let Block  = require('./Block')
-let React  = require('react')
-let Blocks = require('../stores/Blocks')
+let React     = require('react')
+let PropTypes = require('prop-types')
+let Block     = require('./Block')
+let Blocks    = require('../stores/Blocks')
 
 class EditorBlock extends React.Component {
 
   static propTypes = {
-    app   : React.PropTypes.object.isRequired,
-    block : React.PropTypes.object.isRequired
+    app   : PropTypes.object.isRequired,
+    block : PropTypes.object.isRequired
   }
 
   getBlock(block) {

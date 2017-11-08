@@ -5,15 +5,16 @@
  * https://github.com/daviferreira/medium-editor
  */
 
-let MediumEditor = require('./vendor/medium-editor')
 let React        = require('react')
 let DOM          = require('react-dom')
+let PropTypes    = require('prop-types')
+let MediumEditor = require('./vendor/medium-editor')
 
 class Medium extends React.Component {
 
   static propTypes = {
-    content  : React.PropTypes.object.isRequired,
-    onChange : React.PropTypes.func.isRequired
+    content  : PropTypes.object.isRequired,
+    onChange : PropTypes.func.isRequired
   }
 
   static defaultProps = {

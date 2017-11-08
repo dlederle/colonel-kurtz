@@ -3,26 +3,27 @@
  * A reuseable embedded content element. For usage, see the YouTube addon.
  */
 
+const React = require('react')
+const PropTypes = require('prop-types')
 const Field = require('./field')
 const Frame = require('./frame')
 const Graphic = require('./graphic')
-const React = require('react')
 
 class Embedded extends React.Component {
 
   static propTypes = {
-    baseUrl: React.PropTypes.string,
-    onChange: React.PropTypes.func.isRequired,
-    name: React.PropTypes.string.isRequired,
-    resolveUrl: React.PropTypes.func,
-    title: React.PropTypes.string
+    baseUrl: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    resolveUrl: PropTypes.func,
+    title: PropTypes.string
   }
 
   static defaultProps = {
-      baseUrl: '',
-      slug: '',
-      title: 'Embedded Content',
-      resolveUrl: (base, slug) => base + slug
+    baseUrl: '',
+    slug: '',
+    title: 'Embedded Content',
+    resolveUrl: (base, slug) => base + slug
   }
 
   getSrc() {
