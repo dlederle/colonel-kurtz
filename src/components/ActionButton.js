@@ -2,23 +2,21 @@ let Btn   = require('./Button')
 let React = require('react')
 let DOM   = require('react-dom')
 
-module.exports = React.createClass({
+class ActionButton extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     label   : React.PropTypes.string.isRequired,
     onClick : React.PropTypes.func.isRequired
-  },
+  }
 
-  getDefaultProps() {
-    return {
-      className : 'col-btn-fab',
-      symbol    : '+'
-    }
-  },
+  static defaultProps = {
+    className : 'col-btn-fab',
+    symbol    : '+'
+  }
 
   focus() {
     DOM.findDOMNode(this).focus()
-  },
+  }
 
   render() {
     let { className, disabled, label, onClick, symbol } = this.props
@@ -31,4 +29,6 @@ module.exports = React.createClass({
     )
   }
 
-})
+}
+
+module.exports = ActionButton

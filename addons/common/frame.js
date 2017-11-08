@@ -1,13 +1,11 @@
 let React = require('react')
 let cx    = require('classnames')
 
-module.exports = React.createClass({
+class Frame extends React.Component {
 
-  getDefaultProps() {
-    return {
-      element: 'figure'
-    }
-  },
+  static defaultProps = {
+    element: 'figure'
+  }
 
   render() {
     var { element, children, open, ...other } = this.props
@@ -19,4 +17,6 @@ module.exports = React.createClass({
     return React.createElement(element, { className, ...other }, children)
   }
 
-})
+}
+
+module.exports = Frame

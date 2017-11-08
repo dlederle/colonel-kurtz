@@ -1,15 +1,13 @@
 let Btn   = require('../../src/components/Button')
 let React = require('react')
 
-module.exports = React.createClass({
+class Close extends React.Component {
 
-  getDefaultProps() {
-    return {
-      className : 'col-dialog-close',
-      label     : 'Close this dialog',
-      type      : 'button'
-    }
-  },
+  static defaultProps = {
+    className : 'col-dialog-close',
+    label     : 'Close this dialog',
+    type      : 'button'
+  }
 
   render() {
     let { label, ...safe } = this.props
@@ -24,4 +22,6 @@ module.exports = React.createClass({
     )
   }
 
-})
+}
+
+module.exports = Close

@@ -9,40 +9,41 @@ let MediumEditor = require('./vendor/medium-editor')
 let React        = require('react')
 let DOM          = require('react-dom')
 
-var Medium = React.createClass({
+class Medium extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     content  : React.PropTypes.object.isRequired,
     onChange : React.PropTypes.func.isRequired
-  },
+  }
 
-  getDefaultProps() {
-    return {
-      content: { html: '', text: ''},
-      options: {
-        buttons: [ 'header1', 'header2', 'bold', 'italic', 'underline', 'anchor', 'quote',  'unorderedlist', 'orderedlist' ],
-        firstHeader: 'h1',
-        secondHeader: 'h2',
-        diffLeft: 0,
-        diffTop: -10,
-        disableDoubleReturn: true
-      }
+  static defaultProps = {
+    content: {
+      html: '',
+      text: ''
+    },
+    options: {
+      buttons: [ 'header1', 'header2', 'bold', 'italic', 'underline', 'anchor', 'quote',  'unorderedlist', 'orderedlist' ],
+      firstHeader: 'h1',
+      secondHeader: 'h2',
+      diffLeft: 0,
+      diffTop: -10,
+      disableDoubleReturn: true
     }
-  },
+  }
 
   shouldComponentUpdate(props: Object, state: Object){
     return false
-  },
+  }
 
   componentDidMount() {
     this.setState({
       editor: new MediumEditor(DOM.findDOMNode(this.editor), this.props.options)
     })
-  },
+  }
 
   componentWillUnmount() {
     this.state.editor.deactivate()
-  },
+  }
 
   render() {
     return (
@@ -51,9 +52,9 @@ var Medium = React.createClass({
         { this.props.children }
       </div>
     )
-  },
+  }
 
-  _onBlur() {
+  _onBlur = () => {
     var editor = DOM.findDOMNode(this.editor)
 
     this.props.onChange({
@@ -62,6 +63,6 @@ var Medium = React.createClass({
     })
   }
 
-})
+}
 
 module.exports = Medium

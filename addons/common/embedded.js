@@ -8,36 +8,34 @@ const Frame = require('./frame')
 const Graphic = require('./graphic')
 const React = require('react')
 
-const Embedded = React.createClass({
+class Embedded extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     baseUrl: React.PropTypes.string,
     onChange: React.PropTypes.func.isRequired,
     name: React.PropTypes.string.isRequired,
     resolveUrl: React.PropTypes.func,
     title: React.PropTypes.string
-  },
+  }
 
-  getDefaultProps() {
-    return {
+  static defaultProps = {
       baseUrl: '',
       slug: '',
       title: 'Embedded Content',
       resolveUrl: (base, slug) => base + slug
-    }
-  },
+  }
 
   getSrc() {
     const { baseUrl, resolveUrl, slug } = this.props
 
     return this.hasSlug() ? resolveUrl(baseUrl, slug) : null
-  },
+  }
 
   hasSlug() {
     const { slug } = this.props
 
     return `${ slug == undefined ? '' : slug }`.trim().length > 0
-  },
+  }
 
   render() {
     const { className, hint, name, slug, title } = this.props
@@ -51,14 +49,14 @@ const Embedded = React.createClass({
         </Frame>
       </div>
     )
-  },
+  }
 
-  _onChange(e) {
+  _onChange = (e) => {
     this.props.onChange({
       [this.props.name]: e.currentTarget.value
     })
   }
 
-})
+}
 
 module.exports = Embedded

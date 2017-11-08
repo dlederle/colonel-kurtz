@@ -6,19 +6,17 @@ let FallbackBlockType = require('../models/FallbackBlockType')
 let Switch            = require('./Switch')
 let respondsTo        = require('../utils/respondsTo')
 
-module.exports = React.createClass({
+class Block extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     app   : React.PropTypes.object.isRequired,
     block : React.PropTypes.object.isRequired
-  },
+  }
 
-  getInitialState() {
-    return {
-      extraMenuItems : [],
-      menuOpen       : false
-    }
-  },
+  state = {
+    extraMenuItems : [],
+    menuOpen       : false
+  }
 
   getBlockType() {
     let { app, block } = this.props
@@ -26,25 +24,25 @@ module.exports = React.createClass({
     let blockType = app.state.blockTypes.filter(i => i.id === block.type)[0]
 
     return blockType ? blockType : new FallbackBlockType({ block })
-  },
+  }
 
   getMenuItems() {
     return this.state.extraMenuItems
-  },
+  }
 
   setMenuItems(component) {
     if (respondsTo(component, 'getMenuItems')) {
       this.setState({ extraMenuItems: component.getMenuItems() })
     }
-  },
+  }
 
   openMenu() {
     this.setState({ menuOpen: true })
-  },
+  }
 
   closeMenu() {
     this.setState({ menuOpen: false })
-  },
+  }
 
   componentDidMount() {
     this.setMenuItems(this.block)
@@ -52,14 +50,14 @@ module.exports = React.createClass({
     // Trigger an initial change to ensure default content
     // is assigned immediately
     this._onChange(this.getContent(this.props.block))
-  },
+  }
 
   getContent(block) {
     let { component } = this.getBlockType()
     let defaults = typeof component.getDefaultProps === 'function' ? component.getDefaultProps() : {}
 
     return { ...defaults.content, ...block.content }
-  },
+  }
 
   render() {
     let { app, block, children } = this.props
@@ -86,10 +84,12 @@ module.exports = React.createClass({
         <Switch app={ app } position={ block } parent={ block.parent } />
       </div>
     )
-  },
+  }
 
-  _onChange(content) {
+  _onChange = (content) => {
     let { app, block } = this.props
     app.push(Actions.update, [block, content])
   }
-})
+}
+
+module.exports = Block

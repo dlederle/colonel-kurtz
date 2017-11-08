@@ -5,29 +5,27 @@ let Item      = require('./MenuItem')
 let React     = require('react')
 let menuItems = require('../config/menu')
 
-module.exports = React.createClass({
+class BlockMenu extends React.Component {
 
-  statics: { Item },
+  static Item = Item
 
-  propTypes: {
+  static propTypes = {
     app    : React.PropTypes.object.isRequired,
     block  : React.PropTypes.object.isRequired
-  },
+  }
 
-  getDefaultProps() {
-    return {
-      items: []
-    }
-  },
+  static defaultProps = {
+    items: []
+  }
 
   getMenuItem(item) {
     let { id } = item
     return (<Item key={ id } ref={ (el) => this[id] = el } { ...item } { ...this.props } />)
-  },
+  }
 
   getMenuItems() {
-    return this.props.items.concat(menuItems).map(this.getMenuItem)
-  },
+    return this.props.items.concat(menuItems).map(this.getMenuItem, this)
+  }
 
   getMenu() {
     if (!this.props.active) return null;
@@ -40,7 +38,7 @@ module.exports = React.createClass({
       onExit    : this.props.onExit,
       role      : 'navigation'
     }, this.getMenuItems())
-  },
+  }
 
   render() {
     return (
@@ -51,4 +49,6 @@ module.exports = React.createClass({
     )
   }
 
-})
+}
+
+module.exports = BlockMenu

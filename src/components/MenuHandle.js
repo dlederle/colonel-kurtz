@@ -1,15 +1,13 @@
 let Btn   = require('./Button')
 let React = require('react')
 
-module.exports = React.createClass({
+class MenuHandle extends React.Component {
 
-  getDefaultProps() {
-    return {
-      className : 'col-menu-handle',
-      label     : 'Open the menu for this block',
-      type      : 'button'
-    }
-  },
+  static defaultProps = {
+    className : 'col-menu-handle',
+    label     : 'Open the menu for this block',
+    type      : 'button'
+  }
 
   render() {
     let { label, ...safe } = this.props
@@ -24,4 +22,6 @@ module.exports = React.createClass({
     )
   }
 
-})
+}
+
+module.exports = MenuHandle

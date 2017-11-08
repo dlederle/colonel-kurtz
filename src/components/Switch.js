@@ -6,29 +6,29 @@ let SwitchNav     = require('./SwitchNav')
 let classNames    = require('classnames')
 let typesForBlock = require('../utils/typesForBlock')
 
-module.exports = React.createClass({
+class Switch extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     app : React.PropTypes.object.isRequired
-  },
+  }
 
-  getInitialState() {
-    return { open: false }
-  },
+  state = {
+    open: false
+  }
 
   componentWillReceiveProps() {
     this.setState({ open: false })
-  },
+  }
 
-  open() {
+  open = () => {
     this.setState({ open: true })
-  },
+  }
 
-  close() {
+  close = () => {
     this.setState({ open: false }, () => {
       this.toggle.focus()
     })
-  },
+  }
 
   getToggle() {
     if (this.state.open) return null
@@ -37,7 +37,7 @@ module.exports = React.createClass({
                           disabled={ this.hasMaxChildren() }
                           label="Open the block menu and create a block"
                           onClick={ this._onToggle } />)
-  },
+  }
 
   getNav(blockTypes) {
     if (!this.state.open) return null
@@ -46,7 +46,7 @@ module.exports = React.createClass({
                        blockTypes={ blockTypes }
                        onAdd={ this._onAdd }
                        onExit={ this.close } />)
-  },
+  }
 
   hasMaxChildren() {
     let { app, parent } = this.props
@@ -59,19 +59,19 @@ module.exports = React.createClass({
     let type     = app.state.blockTypes.filter(t => t.id === parent.type)[0]
 
     return children.length >= type.maxChildren
-  },
+  }
 
   depth() {
     let { app, parent } = this.props
     return Blocks.getDepth(app.state.blocks, parent, app.state.maxDepth) + 1;
-  },
+  }
 
   hasHitMaxDepth() {
     let { app, parent } = this.props
     if (!app.state.maxDepth) return false
 
     return this.depth() >= app.state.maxDepth
-  },
+  }
 
   render() {
     let { app, parent, position } = this.props
@@ -87,12 +87,12 @@ module.exports = React.createClass({
         { this.getNav(types) }
       </div>
     ) : null
-  },
+  }
 
   _onAdd(type) {
     let { app, position, parent } = this.props
     app.push(Actions.create, [type.id, position, parent])
-  },
+  }
 
   _onToggle() {
     let { app, position, parent } = this.props
@@ -105,12 +105,14 @@ module.exports = React.createClass({
     }
 
     this.open()
-  },
+  }
 
-  _onKeyUp(e) {
+  _onKeyUp = (e) => {
     if (e.key === 'Escape') {
       this.close()
     }
   }
 
-})
+}
+
+module.exports = Switch

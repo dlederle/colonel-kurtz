@@ -9,15 +9,15 @@ let EditorBlock = require('./EditorBlock')
 let React       = require('react')
 let Switch      = require('./Switch')
 
-module.exports = React.createClass({
+class App extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     app : React.PropTypes.object.isRequired
-  },
+  }
 
   getBlock(block, i) {
     return (<EditorBlock key={ block } app={ this.props.app } block={ block } />)
-  },
+  }
 
   render() {
     let { app } = this.props
@@ -28,10 +28,12 @@ module.exports = React.createClass({
       <div className="colonel">
         <Switch app={ app } />
         <Animator className="col-block-children">
-          { parents.map(this.getBlock) }
+          { parents.map(this.getBlock, this) }
         </Animator>
       </div>
     )
   }
 
-})
+}
+
+module.exports = App

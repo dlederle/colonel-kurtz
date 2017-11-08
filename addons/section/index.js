@@ -1,9 +1,5 @@
 let React = require('react')
 
-module.exports = React.createClass({
-
-  render() {
-    return (<div>{ this.props.children }</div>)
-  }
-
-})
+module.exports = function Section ({ children }) {
+  return (<div>{ children }</div>)
+}

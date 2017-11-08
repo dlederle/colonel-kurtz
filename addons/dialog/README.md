@@ -17,11 +17,11 @@ The Dialog is not a BlockType, merely a React component designed for
 Colonel Kurtz:
 
 ```javascript
-let MyBlockTypeComponent = React.createClass({
-  open() {
+class MyBlockTypeComponent extends React.Component {
+  open = () => {
     this.setState({ open: true })
   },
-  close() {
+  close = () => {
     this.setState({ open: false })
   },
   render() {

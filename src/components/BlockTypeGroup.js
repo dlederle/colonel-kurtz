@@ -3,27 +3,23 @@ let FocusTrap = require('react-focus-trap')
 let React     = require('react')
 let Btn       = require('./Button')
 
-module.exports = React.createClass({
+class BlockTypeGroup extends React.Component {
 
-  getDefaultProps() {
-    return {
-      items : []
-    }
-  },
+  static defaultProps = {
+    items : []
+  }
 
-  getInitialState() {
-    return {
+  state = {
       open: false
-    }
-  },
+  }
 
-  open() {
+  open = () =>{
     this.setState({ open: true })
-  },
+  }
 
-  close() {
+  close = () => {
     this.setState({ open: false })
-  },
+  }
 
   getButton(type) {
     let { id, label } = type
@@ -34,7 +30,7 @@ module.exports = React.createClass({
         { label }
       </Btn>
     )
-  },
+  }
 
   getMenu() {
     return this.state.open ? (
@@ -42,7 +38,7 @@ module.exports = React.createClass({
         { this.props.items.map(this.getButton) }
       </FocusTrap>
     ) : null
-  },
+  }
 
   render() {
     return (
@@ -51,13 +47,13 @@ module.exports = React.createClass({
         { this.getMenu() }
       </Animator>
     )
-  },
+  }
 
-  _onKeyUp(e) {
+  _onKeyUp = (e) => {
     // Do not allow escape presses to bubble up to parent switch
     if (e.key === 'Escape' && this.state.open) {
       e.stopPropagation()
     }
   }
 
-})
+}

@@ -69,9 +69,8 @@
     "mocha": "^4.0.1",
     "node-sass": "^4.6.0",
     "postcss": "^6.0.14",
-    "react": "~15.2.0",
-    "react-addons-test-utils": "~15.2.0",
-    "react-dom": "~15.2.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "sass-loader": "^6.0.6",
     "sinon": "^4.1.2",
     "sinon-chai": "^2.14.0",
@@ -84,7 +83,7 @@
     "group-by": "0.0.1",
     "microcosm": "~9.21",
     "react-addons-css-transition-group": ">= 0.14",
-    "react-focus-trap": "~2.3",
-    "react-ink": "~5.1"
+    "react-focus-trap": "^2.5.0",
+    "react-ink": "^6.2.0"
   }
 }

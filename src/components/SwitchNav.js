@@ -4,16 +4,16 @@ let React          = require('react')
 let DOM            = require('react-dom')
 let groupBy        = require('group-by')
 
-module.exports = React.createClass({
+class SwitchNav extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     blockTypes : React.PropTypes.array.isRequired,
     onAdd      : React.PropTypes.func.isRequired
-  },
+  }
 
   componentDidMount() {
     DOM.findDOMNode(this).focus()
-  },
+  }
 
   getButton(type) {
     let { id, label } = type
@@ -24,7 +24,7 @@ module.exports = React.createClass({
       type: type,
       component: (<Btn key={ id } className="col-switch-btn" onClick={ () => onAdd(type) }>{ label }</Btn>)
     }
-  },
+  }
 
   getGroups(blocks) {
     let groups = groupBy(blocks.filter(b => b.group), type => type.group)
@@ -39,12 +39,12 @@ module.exports = React.createClass({
     }
 
     return items
-  },
+  }
 
   render() {
     let { blockTypes } = this.props
 
-    let ungrouped = blockTypes.filter(b => !b.group).map(this.getButton)
+    let ungrouped = blockTypes.filter(b => !b.group).map(this.getButton, this)
     let grouped   = this.getGroups(blockTypes)
     let sorted    = grouped.concat(ungrouped).sort(function (a, b) {
       return blockTypes.indexOf(a.type) - blockTypes.indexOf(b.type)
@@ -56,4 +56,6 @@ module.exports = React.createClass({
       </nav>
     )
   }
-})
+}
+
+module.exports = SwitchNav

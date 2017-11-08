@@ -9,13 +9,21 @@ let defaults = {
   types       : []
 }
 
+function generateComponent (component) {
+  class Component extends React.Component {}
+
+  Object.assign(Component.prototype, component)
+
+  return Component
+}
+
 class BlockType {
 
   constructor(config) {
     let { component } = Object.assign(this, defaults, config)
 
     if (typeof component === 'object') {
-      this.component = React.createClass(component)
+      this.component = generateComponent(component)
     }
   }
 

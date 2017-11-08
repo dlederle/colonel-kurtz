@@ -2,14 +2,12 @@ let Close     = require('./close')
 let FocusTrap = require('react-focus-trap')
 let React     = require('react')
 
-module.exports = React.createClass({
+class Dialog extends React.Component {
 
-  getDefaultProps() {
-    return {
-      className        : 'col-dialog',
-      headingComponent : 'h3'
-    }
-  },
+  static defaultProps = {
+    className        : 'col-dialog',
+    headingComponent : 'h3'
+  }
 
   getTitle() {
     let { headingComponent, title } = this.props
@@ -18,7 +16,7 @@ module.exports = React.createClass({
         className: "col-dialog-title"
       }, title)
     }
-  },
+  }
 
   render() {
     let { active, children, className, onExit } = this.props
@@ -32,4 +30,6 @@ module.exports = React.createClass({
     )
   }
 
-})
+}
+
+module.exports = Dialog

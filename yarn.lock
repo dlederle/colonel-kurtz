@@ -2171,7 +2171,7 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.1, fbjs@^0.8.16:
+fbjs@^0.8.16:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -4208,7 +4208,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.6:
+prop-types@^15.5.6, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -4336,21 +4336,24 @@ rc@^1.1.7:
   dependencies:
     react-transition-group "^1.2.0"
 
-react-addons-test-utils@~15.2.0:
-  version "15.2.1"
-  resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.2.1.tgz#38dfa2fe91d09603e5f27b2298665bc38a64bae1"
+react-dom@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
-react-dom@~15.2.0:
-  version "15.2.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.2.1.tgz#dc942a5268f955e180158c9d4d2609fec9388ff0"
+react-focus-trap@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-focus-trap/-/react-focus-trap-2.5.0.tgz#962909802c2391005a95e14bc568c15ce86a42d3"
+  dependencies:
+    babel-preset-react "^6.24.1"
 
-react-focus-trap@~2.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/react-focus-trap/-/react-focus-trap-2.3.3.tgz#ab01c59d423349746a786635bc7f9b47f0dd0d44"
-
-react-ink@~5.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/react-ink/-/react-ink-5.1.1.tgz#1089f10ddc47d0cfad2c4450b7df34c53ba453b4"
+react-ink@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/react-ink/-/react-ink-6.2.0.tgz#b268107bf986c6009bd38d7d3baa9fba1016e368"
 
 react-transition-group@^1.2.0:
   version "1.2.1"
@@ -4362,13 +4365,14 @@ react-transition-group@^1.2.0:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
-react@~15.2.0:
-  version "15.2.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.2.1.tgz#e458df700bae72900ba32673b7e42e8dbd05a393"
+react@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0.tgz#ce7df8f1941b036f02b2cca9dbd0cb1f0e855e2d"
   dependencies:
-    fbjs "^0.8.1"
+    fbjs "^0.8.16"
     loose-envify "^1.1.0"
-    object-assign "^4.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"

@@ -13,16 +13,14 @@ function parseYouTube(value='') {
   return matches ? matches[1] : value
 }
 
-const YouTube = React.createClass({
+class YouTube extends React.Component {
 
-  getDefaultProps() {
-    return {
-      baseUrl: "https://www.youtube.com/embed/",
-      content: {
-        video_id: ''
-      }
+  static defaultProps = {
+    baseUrl: "https://www.youtube.com/embed/",
+    content: {
+      video_id: ''
     }
-  },
+  }
 
   render() {
     const { baseUrl, content } = this.props
@@ -34,11 +32,11 @@ const YouTube = React.createClass({
                       name="video_id"
                       slug={ content.video_id }
                       onChange={ this._onChange } />)
-  },
+  }
 
-  _onChange({ video_id }) {
+  _onChange = ({ video_id }) => {
     this.props.onChange({ video_id: parseYouTube(video_id) })
   }
-})
+}
 
 module.exports = YouTube

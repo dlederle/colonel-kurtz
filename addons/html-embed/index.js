@@ -19,20 +19,18 @@ function sanitize (html) {
   return bucket.innerHTML
 }
 
-module.exports = React.createClass({
+class HTMLEmbed extends React.Component {
 
-  getDefaultProps() {
-    return {
-      content: {
-        html:   '',
-        script: ''
-      }
+  static defaultProps = {
+    content: {
+      html:   '',
+      script: ''
     }
-  },
+  }
 
   shouldDisplaySandbox() {
     return this.props.content.html || this.props.content.script
-  },
+  }
 
   getSandbox() {
     let { html = '', script = '' } = this.props.content
@@ -43,7 +41,7 @@ module.exports = React.createClass({
     let embeddable = encoding + escape(style + html + javascript)
 
     return <iframe className="col-block-html-frame" src={ embeddable } />
-  },
+  }
 
   render() {
     let { html, script } = this.props.content
@@ -67,14 +65,16 @@ module.exports = React.createClass({
         { this.shouldDisplaySandbox() ? this.getSandbox() : null }
       </div>
     )
-  },
+  }
 
-  onScriptChange(event) {
+  onScriptChange = (event) => {
     this.props.onChange({ script: event.target.value })
-  },
+  }
 
-  onHTMLChange(event) {
+  onHTMLChange = (event) => {
     this.props.onChange({ html: sanitize(event.target.value) })
   }
 
-})
+}
+
+module.exports = HTMLEmbed

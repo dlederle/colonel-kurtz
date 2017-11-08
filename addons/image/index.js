@@ -9,13 +9,13 @@ let Graphic = require('../common/graphic')
 let Frame   = require('../common/frame')
 let React   = require('react')
 
-var Image = React.createClass({
+class Image extends React.Component {
 
-  getDefaultProps() {
-    return {
-      content: { src: '' }
+  static defaultProps = {
+    content: {
+      src: ''
     }
-  },
+  }
 
   render() {
     var { src } = this.props.content
@@ -29,14 +29,14 @@ var Image = React.createClass({
         </Frame>
       </div>
     )
-  },
+  }
 
-  _onSrcChange(e) {
+  _onSrcChange = (e) => {
     this.props.onChange({
       src: e.currentTarget.value
     })
   }
 
-})
+}
 
 module.exports = Image

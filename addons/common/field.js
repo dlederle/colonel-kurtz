@@ -10,25 +10,25 @@ function uid(len) {
   return Math.random().toString(35).substr(2, len);
 }
 
-let Field = React.createClass({
+class Field extends React.Component {
 
-  getDefaultProps() {
-    return {
-      hint    : null,
-      element : 'input',
-      type    : 'text'
-    }
-  },
+  static defaultProps = {
+    hint    : null,
+    element : 'input',
+    type    : 'text'
+  }
 
-  getInitialState() {
-    return {
+  constructor(props, context) {
+    super(props, context)
+
+    this.state = {
       hintId: `hint-col-field-${uid()}`
     }
-  },
+  }
 
   getHint(hint) {
     return hint ? (<span id={ this.state.hintId } className="col-field-hint">{ hint }</span>) : null
-  },
+  }
 
   render() {
     let { hint, element:Element, label, ...props } = this.props
@@ -44,6 +44,6 @@ let Field = React.createClass({
     )
   }
 
-})
+}
 
 module.exports = Field
